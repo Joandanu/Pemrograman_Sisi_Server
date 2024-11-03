@@ -1,0 +1,28 @@
+<!-- courses/templates/courses/course_statistics.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Statistics</title>
+</head>
+<body>
+    <h1>Course Statistics</h1>
+    <ul>
+        <li>Jumlah user yang membuat course: {{ creators_count }}</li>
+        <li>Jumlah user yang tidak memiliki course: {{ users_without_courses_count }}</li>
+        <li>Rata-rata jumlah course yang diikuti 1 user: {{ avg_courses_per_user }}</li>
+        <li>User yang mengikuti course terbanyak: {{ user_with_most_courses.username }} ({{ user_with_most_courses.courses_count }} courses)</li>
+    </ul>
+
+    <h2>User yang tidak mengikuti course sama sekali:</h2>
+    <ul>
+        {% for user in users_without_enrollment %}
+            <li>{{ user.username }}</li>
+        {% empty %}
+            <li>Tidak ada user yang tidak mengikuti course.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

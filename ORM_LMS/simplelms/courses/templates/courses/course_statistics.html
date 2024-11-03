@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Statistics</title>
+</head>
+<body>
+    <h1>Statistik Kursus</h1>
+    <p>Jumlah user yang membuat course: {{ creators_count }}</p>
+    <p>Jumlah user yang tidak memiliki course: {{ users_without_courses_count }}</p>
+    <p>Rata-rata jumlah course yang diikuti per user: {{ average_courses_per_user }}</p>
+    <p>User yang mengikuti course terbanyak: 
+        {% if users_with_most_courses %}
+            {{ users_with_most_courses.username }} dengan {{ users_with_most_courses.course_count }} course
+        {% else %}
+            Tidak ada user yang mengikuti course.
+        {% endif %}
+    </p>
+    <p>User yang tidak mengikuti course sama sekali:
+        {% if users_without_courses %}
+            {% for user in users_without_courses %}
+                {{ user.username }} <br>
+            {% endfor %}
+        {% else %}
+            Tidak ada user yang tidak mengikuti course.
+        {% endif %}
+    </p>
+</body>
+</html>
